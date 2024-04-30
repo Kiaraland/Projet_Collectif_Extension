@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Générateur de mots de passe",
+    "version": "1.0",
+    "description": "Une extension qui génère des mots de passe sécurisés",
+    
+    "action": {
+        "default_popup": "pop_up.html",
+        "action.default_icon": {
+            "16": "images/icons8-coffre-fort-16.png",
+            "48": "images/icons8-barre-d'outils-48.png",
+            "128": "images/icons8-menu-128.png"
+        }
+    },
+    "icons":{
+        "16": "images/icons8-coffre-fort-16.png",
+        "48": "images/icons8-barre-d'outils-48.png",
+        "128": "images/icons8-menu-128.png"
+    },
+    "permissions": ["activeTab", "storage"]
+}
