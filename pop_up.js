@@ -1,42 +1,27 @@
-//générateur MDP
-
-document.addEventListener('DOMContentLoaded', function() {
-document.getElementById('generer').addEventListener('click', genererMotDePasse);
-   
-});
-
-function genererMotDePasse() {
-    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
-    const longueur = 16; // Longueur du mot de passe
-    
-    let motDePasse = "";
-    for (let i = 0; i < longueur; i++) {
-        const index = Math.floor(Math.random() * caracteres.length);
-        motDePasse += caracteres[index];
-    }
-
-    document.getElementById('motDePasse').value = motDePasse;
-}
-
-//Formulaire 
-function detectLoginForms() {
-    // Rechercher les champs de nom d'utilisateur et de mot de passe
-    const usernameInputs = document.querySelectorAll('form input[type="text"]');
-    const passwordInputs = document.querySelectorAll('form input[type="password"]');
-    // Parcourir les champs de mot de passe et ajouter des écouteurs d'événements
-    passwordInputs.forEach((passwordInput) => {
-      // Rechercher le champ de nom d'utilisateur associé dans le même formulaire
-      const usernameInput = usernameInputs.find((input) => input.form === passwordInput.form);
-      if (usernameInput) {
-        // Écouteur d'événements pour le champ de mot de passe
-        passwordInput.addEventListener('input', (event) => {
-          const username = usernameInput.value;
-          const password = passwordInput.value;
-          // Enregistrer les informations de connexion (à implémenter)
-          saveLoginCredentials(username, password);
+if (document.querySelector(".pop_up")) {
+  const button = document.querySelector(".button");
+  const circle = document.querySelector(".circle");
+  let buttonOn = false;
+  button.addEventListener("click", () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const tab = tabs[0];
+      if (!buttonOn) {
+        buttonOn = true;
+        circle.style.animation = "moveCircleRight 0.3s forwards";
+        button.style.animation = "backgroundYellow 0.3s forwards";
+        chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          files: ["appOn.js"],
+        });
+      } else {
+        buttonOn = false;
+        circle.style.animation = "moveCircleLeft 0.3s forwards";
+        button.style.animation = "backgroundBlue 0.3s forwards";
+        chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          files: ["appOff.js"],
         });
       }
     });
-  }
-  // Appeler la fonction pour détecter les formulaires de connexion
-  detectLoginForms();
+  });
+}

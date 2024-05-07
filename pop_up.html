@@ -1,13 +1,100 @@
-<!DOCTYPE html>
+<bo!DOCTYPE html>
 <html>
-<head>
-    <title>Generateur de mots de passe</title>
+  <head>
+    <title>Mode Light / Dark</title>
+  </head>
+  <style>
+    dy { 
+      min-width: 300px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-family: "Georgia", cursive;
+    }
+    .yellow {
+      color: #fbe362;
+    }
+    .blue{
+      color:blue;
+    }
+    p, .button {
+      font-family: "Open Sans", sans-serif;
+      font-size: 1rem;
+    }
+    .button {
+      background-color: blue;
+      position: fixed;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      height: 2rem;
+      width: 4.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      
+    }
+
+    /* animation */
+    @keyframes moveCircleRight {
+  from {
+    left: 0;
+    transform: translateX(0);
+  }
+  to {
+    left: calc(100% - 2rem);
+    transform: translateX(0);
+  }
+}
+@keyframes moveCircleLeft {
+  from {
+    left: calc(100% - 2rem);
+    transform: translateX(0);
+  }
+  to {
+    left: 0;
+    transform: translateX(0);
+  }
+}
+@keyframes backgroundYellow {
+  to {
+    background-color: yellow;
+  }
+}
+@keyframes backgroundBlue {
+  to {
+    background-color: blue;
+  }
+}
+
+    .row {
+      padding: 0 0.25rem;
+      pointer-events: none;
+    }
+
+    .circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color: #588be4;
+      pointer-events: none;
+    }
+    
+  </style>
+  
+  <body class="pop_up">
+    <h1>Mode Light / Dark</h1>
+    <span class="yellow">Switch</span><span class="blue">YPS</span>
+    <div class="button">
+      <div class="row">On</div>
+      <div class="row">Off</div>
+      <div class="circle"></div>
+    </div>
     <script src="pop_up.js"></script>
-</head>
-<body>
-    <h1>Generateur de mots de passe</h1>
-    <button id="generer">Generer un mot de passe</button>
-    <input type="text" id="motDePasse" readonly>
-    <button id="copy">Copy</button>
-</body>
+  </body>
+  </html>
 </html>
